@@ -1,0 +1,55 @@
+<div class="flexContainer flexColumn fullHeight whiteBackground">
+
+  <nav class="flexContainer navBackground navMenu">
+    <ul class="nav flexItem flexStart ">
+      <li>
+        <span class="brand navItem titulo">Sistema de Cobrança</span>
+        <span class="brand tituloAbreviacao">SC</span>
+        <!--<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZygyK7k4LYPUFZ5UWj46DH-J3RRa1WJFplOhbqDDzfzwgOJ9bww" width="230" height="60">-->
+      </li>
+      <li>
+        <div style="width: auto; padding-top:10px;height: 60px;">
+          <p style="font-size:25px;">Painel de controle</p>
+        </div>
+      </li>
+    </ul>
+    <ul class="nav flexContainer flexEnd">
+
+      <li>
+        <!--<a routerLink="" class="navItem">Logout</a>-->
+        <img src="https://cdn.iconscout.com/public/images/icon/free/png-512/avatar-user-coder-3579ca3abc3fd60f-512x512.png" width="60"
+          height="60" (click)="OpenClose('MenuOpcoes')">
+      </li>
+
+      <div id="Opcoes" *ngIf="MenuOpcoes">
+        <div style="height: 45px;background:#3C67F7;color:white">
+          <span style="padding-left: 10px;padding-top: 20px">Bruno Silva</span>
+        </div>
+        <p style="padding-left: 10px">Meu perfil</p>
+        <p routerLink="" style="padding-left: 10px">Logout</p>
+      </div>
+
+    </ul>
+  </nav>
+
+  <div class="flexContainer flexItem">
+
+    <aside class="sidebar sidebarLeft">
+      <div class="sidebarMenu flexItem flexStart flexColumn">
+        <a routerLink="home">Inicio</a>
+        <a routerLink="categoria">Categoria</a>
+        <a routerLink="exame">Exame</a>
+        <a routerLink="paciente">Pacientes</a>
+        <a routerLink="notificacoes">Notificações</a>
+      </div>
+    </aside>
+
+    <main class="flexItem whiteBackground main">
+      <div class="component">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+
+  </div>
+  <!--<footer class="flexContainer flexCenter navBackground whiteText height50">&copy; Jennifer Bland</footer>-->
+</div>

@@ -1,0 +1,129 @@
+<div class="links">
+  <a routerLink="/home">Inicio/ </a>
+  <a routerLink="/paciente">Lista de Paciente/ </a>
+  <a>Paciente</a>
+</div>
+
+<div class="container paddingComponent">
+
+
+  <div class="sectionTitleButton">
+    <span class="title">Paciente</span>
+  </div>
+  <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+    <div class="form-row">
+
+      <div class="form-group col-md-2">
+        <label for="codigo">Código</label>
+        <input type="codigo" class="form-control" id="codigo" formControlName="id" placeholder="Código">
+      </div>
+
+
+      <div class="form-group col-md-12">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Informe o nome do paciente">
+
+        <div *ngIf="formulario.controls['nome'].invalid && (formulario.controls['nome'].dirty || formulario.controls['nome'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="formulario.controls['nome'].errors.required">
+            O nome é de preenchimento obrigatório
+          </div>
+
+          <div *ngIf="formulario.controls['nome'].errors.minlength">
+            Tamanho minimo 5 caracteres
+          </div>
+
+          <div *ngIf="formulario.controls['nome'].errors.maxlength">
+            Tamanho maximo de 70 caracteres
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-md-12">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" formControlName="email" placeholder="Informe o Email">
+
+        <div *ngIf="formulario.controls['email'].invalid && (formulario.controls['email'].dirty || formulario.controls['email'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="formulario.controls['email'].errors.required">
+            O email é de preenchimento obrigatório
+          </div>
+
+          <div *ngIf="formulario.controls['email'].errors.email">
+              Informe um e-mail em um formato válido example@example.com
+            </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group col-md-6">
+        <label for="cpf">CPF</label>
+        <input type="text" class="form-control" formControlName="cpf" id="cpf" placeholder="CPF">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="telefone">Telefone</label>
+        <input type="text" class="form-control" formControlName="telefone" id="telefone" placeholder="Telefone">
+      </div>
+
+    </div>
+
+
+    <div class="form-row">
+
+      <div class="form-group col-md-4">
+        <label for="cep">CEP</label>
+        <input type="text" class="form-control" formControlName="cep" id="cep" (blur)="consultaCEP()">
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="cidade">Cidade</label>
+        <input type="text" class="form-control" formControlName="cidade" id="cidade">
+      </div>
+
+      <div class="form-group col-md-2">
+        <label for="estado">Estado</label>
+        <select id="estado" class="form-control" formControlName="estado">
+          <option *ngFor="let estado of estados | async" [value]="estado.sigla">{{ estado.nome }}</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group col-md-5">
+        <label for="endereco">Endereço</label>
+        <input type="text" class="form-control" formControlName="endereco" id="endereco">
+      </div>
+
+      <div class="form-group col-md-5">
+        <label for="bairro">Bairro</label>
+        <input type="text" class="form-control" formControlName="bairro" id="bairro">
+      </div>
+
+
+      <div class="form-group col-md-2">
+        <label for="Numero">Numero</label>
+        <input type="text" class="form-control" formControlName="numero" id="Numero">
+      </div>
+
+    </div>
+
+
+
+    <div class="form-check col-md-12">
+      <input class="form-check-input" type="checkbox" id="status" formControlName="status">
+      <label class="form-check-label" for="gridCheck">
+        Ativo
+      </label>
+    </div>
+
+    <button type="submit" [disabled]="!formulario.valid" class="btn btn-primary">Salvar</button>
+
+  </form>
+
+</div>

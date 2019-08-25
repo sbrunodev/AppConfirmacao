@@ -1,0 +1,95 @@
+<div class="links">
+  <a routerLink="/home">Inicio/ </a>
+  <a routerLink="/exame">Lista de Exame/ </a>
+  <a>Exame</a>
+</div>
+
+<div class="container paddingComponent">
+
+
+  <div class="sectionTitleButton">
+    <span class="title">Exame</span>
+  </div>
+  <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="form-group col-md-2">
+      <label for="codigo">Código</label>
+      <input type="codigo" class="form-control" id="codigo" formControlName="id" placeholder="Código">
+    </div>
+
+
+    <div class="form-group col-md-12">
+      
+      <label for="descricao">Descrição</label>
+      <input type="text" class="form-control" id="descricao" formControlName="descricao" (input)="onInput()" placeholder="Informe a descrição da categoria">
+
+      <div *ngIf="formulario.controls['descricao'].invalid && (formulario.controls['descricao'].dirty || formulario.controls['descricao'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="formulario.controls['descricao'].errors.required">
+          A descrição é de preenchimento obrigatório
+        </div>
+
+        <div *ngIf="formulario.controls['descricao'].errors.minlength">
+          Tamanho minimo 5 caracteres
+        </div>
+
+        <div *ngIf="formulario.controls['descricao'].errors.maxlength">
+          Tamanho maximo de 70 caracteres
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="form-group col-md-12">
+      <label for="categoriaexame" class="control-label">Categoria do Exame</label>
+      <select class="form-control" id="categoriaexame" formControlName="categoriaexame">
+        <option *ngFor="let categoria of cbbCategoriaExame" [value]="categoria.id">{{ categoria.descricao }}</option>
+      </select>
+
+      <div *ngIf="formulario.controls['categoriaexame'].invalid && (formulario.controls['categoriaexame'].dirty || formulario.controls['categoriaexame'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="formulario.controls['categoriaexame'].errors.required">
+          É necessario escolher uma categoria pra o exame
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group col-md-12">
+      <label for="jejum">Jejum</label>
+      <textarea class="form-control" id="jejum" formControlName="jejum" rows="2"></textarea>
+
+      <div *ngIf="formulario.controls['jejum'].invalid && (formulario.controls['jejum'].dirty || formulario.controls['jejum'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="formulario.controls['jejum'].errors.required">
+          O jejum é de preenchimento obrigatório
+        </div>
+
+        <div *ngIf="formulario.controls['jejum'].errors.minlength">
+          Tamanho minimo 5 caracteres
+        </div>
+
+        <div *ngIf="formulario.controls['jejum'].errors.maxlength">
+          Tamanho maximo de 70 caracteres
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-group col-md-12">
+      <label for="observacao">Restrições</label>
+      <textarea class="form-control" id="observacao" formControlName="observacao" rows="2"></textarea>
+    </div>
+
+    <div class="form-check col-md-12">
+      <input class="form-check-input" type="checkbox" id="status" formControlName="status">
+      <label class="form-check-label" for="gridCheck">
+        Ativo
+      </label>
+    </div>
+
+    <button type="submit" [disabled]="!formulario.valid" class="btn btn-primary">Salvar</button>
+
+  </form>

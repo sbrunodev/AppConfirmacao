@@ -1,0 +1,102 @@
+<div class="links">
+  <a routerLink="/home">Inicio/ </a>
+  <a routerLink="/notificacoes">Lista de Notificacao/ </a>
+  <a>Notificação</a>
+</div>
+
+<div class="container paddingComponent">
+
+
+  <div class="sectionTitleButton">
+    <span class="title">Notificação</span>
+  </div>
+
+  <form class="form-horizontal">
+
+<!--
+    <div class="form-group col-md-12">
+      <label for="paciente">Paciente</label>
+      <select (change)="onChangePaciente($event.target.value)" id="paciente" class="form-control">
+        <option *ngFor="let p of pacientes" [value]="p.id">{{p.nome}}</option>
+      </select>
+    </div>
+  -->
+    
+    <div *ngIf="pacientes.length!==0" class="form-group col-md-12"> 
+      <label for="paciente"> Pacientes </label>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let ep of pacientes">
+            <th scope="row">{{ep.id}}</th>
+            <td>{{ep.nome}}</td>
+            <td>bruhhnno@live.com</td>
+
+            <td>
+              <button type="button" (click)="onChangePaciente(ep.id)" class="btn btn-primary" style="margin-right: 10px;width: 100px">Pesquisar</button>
+
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="pacientes.length===0 " class="form-group col-md-12">
+      Não foi encontrado nenhum paciente :/
+    </div>
+
+
+    <div class="form-group col-md-12">
+      <label for="estado">Exame</label>
+      <select (change)="onChangeExame($event.target.value)" id="estado" class="form-control">
+        <option *ngFor="let e of exames" [value]="e.id">{{ e.descricao }}</option>
+      </select>
+    </div>
+
+    <div class="form-row col-md-12">
+      <div class="form-group col-md-6">
+        <label for="data">Data do Exame</label>
+        <input type="date" class="form-control" [(ngModel)]="data" name="data" />
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="hora">Horario de chegada</label>
+        <input type="time" class="form-control" [(ngModel)]="hora" name="hora" />
+      </div>
+    </div>
+
+    <hr>
+    <div *ngIf="enviarPara.length!==0">
+      Enviar para
+      <a *ngFor="let ep of enviarPara; let i = index" (click)="removerEnviarPara(ep.id, ep.nome)" class="enviarParaPaciente" title="bruhhnno@live.com">
+        {{ep.nome}}
+        <a *ngIf="i < enviarPara.length-1">,</a>
+      </a>
+    </div>
+
+    <div *ngIf="exame!=null">
+      <h4>{{exame.descricao}} </h4>
+      <h6>{{exame.descricaoce}}</h6>
+      <p>
+        Jejum: {{exame.jejum}}
+        <br> Prescrição: {{exame.observacao}}
+      </p>
+
+    </div>
+
+    <div *ngIf="data">Data do Exame: {{data | date:'dd/MM/yyyy'}}</div>
+    <div *ngIf="hora">Horário: {{hora}}</div>
+
+    <div class="col-md-12 text-center">
+      <button id="singlebutton" name="singlebutton" class="btn btn-success" (click)="enviarNotificacao()">Enviar Notificação</button>
+    </div>
+
+  </form>

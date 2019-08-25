@@ -1,0 +1,85 @@
+<div class="links">
+  <a routerLink="/home">Inicio/ </a>
+  <a >Lista de Pacientes/ </a>
+</div>
+
+<div class="container paddingComponent">
+
+  <section class="sectionTitle">
+    <div>
+      <span class="title">Paciente</span>
+    </div>
+    <div class="sectionTitleButton">
+      <a class="btn btn-success btn-md" routerLink="/paciente/novo">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        <span class="titleComponent"> Novo Paciente</span>
+      </a>
+    </div>
+  </section>
+  
+    
+    <div class="input-group">
+      <input type="text" class="form-control" id="descricao" placeholder="Pesquisar pela descrição..." [(ngModel)]="pesquisarValue">
+      <!-- (input)="onSearchChange($event.target.value)" -->
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)='clickPesquisar()' >Pesquisar</button>
+      </div>
+    </div>
+    <br>
+  
+  
+    <div *ngIf="items!=false">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+  
+          <tr *ngFor="let item of items ">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.nome}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.telefone}}</td>
+            <td>{{item.cidade}}</td>
+           
+            <td>
+              <button type="button" (click)="excluir(item.nome, item.id)" class="btn btn-danger" style="margin-right: 10px;width: 70px">Delete</button>
+              <a [routerLink]="['/paciente',item.id,'editar']" class="btn btn-primary" style="margin-right: 10px;width: 70px">Edit</a>
+            </td>
+          </tr>
+  
+        </tbody>
+      </table>
+      
+      <nav *ngIf="pages!=null && pages != 1" aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+  
+          <li class="page-item" (click)="changePage(0,'ant')" [ngClass]="{disabled:currentPage==1}">
+            <a class="page-link" tabindex="-1">Anterior</a>
+          </li>
+  
+          <li class="page-item" *ngFor="let p of pages" (click)="changePage(p)" [ngClass]="{active:p==currentPage}">
+            <a class="page-link">{{p}}</a>
+          </li>
+  
+  
+          <li class="page-item" (click)="changePage(0,'prox')" [ngClass]="{disabled:totalPages==currentPage}">
+            <a class="page-link" tabindex="-1">Próximo</a>
+          </li>
+  
+        </ul>
+      </nav>
+    </div>
+  
+    <div *ngIf="items==null" class="text-center">
+      <h6>Nenhum item foi encontrado</h6>
+    </div>
+  
+  </div>

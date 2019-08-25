@@ -1,0 +1,174 @@
+.flexContainer {
+  display: flex;
+}
+
+.flexItem {
+  flex: 1;
+}
+
+.flexStart {
+  justify-content: flex-start;
+}
+
+.flexEnd {
+  justify-content: flex-end;
+}
+
+.brand {
+  width: 230px;
+}
+
+.titulo {}
+
+.tituloAbreviacao {
+  font-weight: bold;
+  font-size: 48px;
+  color: #868686;
+  display: none;
+}
+
+.component {
+  width: 100%;
+  background: white;
+  min-height: 100vh;
+  padding-left: 10px;
+  height: auto
+}
+
+#Opcoes {
+  position: absolute;
+  top: 65px;
+  right: 0px;
+  width: 220px;
+  height: auto;
+  background: #f5f5f5;
+  margin-right: 10px;
+  box-shadow: 2px 5px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+#Opcoes:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 95%;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-bottom-color: #3C67F7;
+  border-top: 0;
+  margin-left: -20px;
+  margin-top: -8px;
+}
+
+.nav {
+  list-style: none;
+}
+
+.navItem {
+  text-decoration: none;
+  display: block;
+  padding: 0 1em;
+  color: #696969;
+  height: 100%;
+  padding-top: 15px;
+}
+
+.navItem:hover {
+  background: #f0f0f0;
+}
+
+.flexItem {
+  flex: 1;
+}
+
+.flexColumn {
+  flex-direction: column;
+}
+
+.fullHeight {
+  min-height: 100vh;
+  height: auto;
+}
+
+.whiteBackground {
+  background: white;
+}
+
+.navBackground {
+  background: white;
+  height: 60px;
+  box-shadow: 0 1px 1px 0 #e6e6e6;
+  z-index: 10;
+}
+
+.main {
+  order: 2;
+  /*padding: 20px;*/
+  background: #eeeeee;
+}
+
+.sidebar {
+  width: 230px;
+  background: white;
+  padding: 20px;
+}
+
+.sidebarLeft {
+  order: 1;
+  min-width: 200px;
+  padding: 0px;
+  background: #f5f5f5;
+  box-shadow: 0 5px 5px 0 #dadada;
+  z-index: 5;
+}
+
+.sidebarMenu {
+  padding-top: 25px;
+  text-decoration: none;
+}
+
+.sidebarMenu a {
+  text-decoration: none;
+  display: block;
+  padding: 0 1em;
+  color: #696969;
+  height: 35px;
+  width: 100%;
+}
+
+.sidebarMenu a:hover {
+  background: #f0f0f0;
+}
+
+/*Resolução menor ou igual a 800px*/
+
+@media only screen and (max-width: 800px) {
+  .sidebar {
+    width: 150px;
+  }
+  .sidebarLeft {
+    min-width: 150px;
+    padding: 0px;
+  }
+  .brand {
+    width: 150px;
+    text-align: center;
+  }
+  .titulo {
+    display: none;
+  }
+  .tituloAbreviacao {
+    display: block;
+  }
+}
+
+/*Resolução menor ou igual a 600px*/
+
+@media only screen and (max-width: 600px) {
+  .brand {
+    display: none;
+  }
+  .sidebarLeft {
+    display: none;
+  }
+}

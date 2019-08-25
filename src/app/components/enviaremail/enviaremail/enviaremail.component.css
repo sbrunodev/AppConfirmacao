@@ -1,0 +1,10 @@
+.enviarParaPaciente:hover { 
+    background-color: red;
+    color:white;
+    text-decoration: underline;
+}
+
+.enviarParaPaciente{
+    font-weight: bold;
+}
+

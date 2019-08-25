@@ -1,0 +1,76 @@
+<div class="links">
+  <a routerLink="/home">Inicio/ </a>
+  <a routerLink="/notificacoes">Lista de Notificacao/ </a>
+  <a>Notificação</a>
+</div>
+
+<div class="container paddingComponent">
+
+
+  <div class="sectionTitleButton">
+    <span class="title">Notificação</span>
+  </div>
+
+  <div *ngIf="inf!=null">
+
+    <div class="row col-md-12">
+      <h4>{{inf.descricao}}</h4>
+    </div>
+
+    <div class="row col-md-12">
+      <div class="col-md-3">
+        Data do Exame: {{inf.data | date:"dd/MM/yyyy"}}
+      </div>
+
+      <div class="col-md-3">
+        Hora do Exame: {{inf.hora }}
+      </div>
+
+      <div class="col-md-3" *ngIf="inf.iniciodojejum!='00:00:00'">
+        Inicio do jejum: {{inf.iniciodojejum}}
+      </div>
+
+    </div>
+
+    <div class="col-md-12">
+      Envio do email: {{inf.quandoenviou | date:"dd/MM/yyyy hh:mm"}}
+    </div>
+
+    <hr>
+    <h5>Pacientes</h5>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Paciente</th>
+          <th scope="col">Email</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">Data da Verificação</th>
+         
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of inf.pacientes.item">
+          <td>{{item.nome}}</td>
+          <td>{{item.email}}</td>
+          <td>{{item.telefone}}</td>
+         
+          <td>            
+            <span *ngIf="item.dataverificacao">{{item.dataverificacao | date:"dd/MM/yyyy hh:mm"}}</span>
+            <span *ngIf="!item.dataverificacao">Não verificado</span>
+          </td>
+
+          <td>
+            <button (click)="reenviarEmail(item.email)" type="button" class="btn btn-default btn-sm" style="margin-right: 10px;width: 125px">Reenviar e-mail</button>
+            <button (click)="verificar(item.linkacesso)" type="button" class="btn btn-success btn-sm" style="margin-right: 10px;width: 125px">Verificar</button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+
+
+  </div>
+</div>
